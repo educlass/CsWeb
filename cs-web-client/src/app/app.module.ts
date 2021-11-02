@@ -19,7 +19,8 @@ import { MenuComponent } from './menu/menu.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     AppMaterialModule,
-    LayoutModule
+    LayoutModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
