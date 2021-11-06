@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { ClientesRoutingModule } from './clientes-routing.module';
 import { AppMaterialModule } from './../shared/app-material/app-material.module';
 import { ClientesComponent } from './clientes/clientes.component';
@@ -13,6 +14,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     ClientesRoutingModule,
+    SharedModule,
     AppMaterialModule
   ]
 })
