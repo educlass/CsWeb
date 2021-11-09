@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ControlContainer, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'field-text',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FieldTextComponent implements OnInit {
 
-  constructor() { }
+  form!: FormGroup;
+  control!: FormControl;
 
-  ngOnInit(): void {
+  @Input() controlName: string = '';
+  @Input() label: string = '';
+
+  constructor(
+    private controlContainer: ControlContainer
+    ) { }
+
+  ngOnInit() {
+    this.form = this.controlContainer.control as FormGroup;
+    this.control = this.form.get(this.controlName) as FormControl;
   }
 
 }

@@ -1,35 +1,32 @@
 <mat-card>
   <mat-card-title>Clientes</mat-card-title>
 
-  <div class="row">
-    <div class="col-md-6">
-      <mat-form-field appearance="outline">
-        <mat-label>Nome</mat-label>
-        <input matInput placeholder="Nome">
-      </mat-form-field>
-    </div>
-    <div class="col-md-6">
-      <mat-form-field appearance="outline">
-        <mat-label>Placa</mat-label>
-        <input matInput placeholder="Placa">
-      </mat-form-field>
-    </div>
-  </div>
+  <form [formGroup]="form">
 
-  <div class="row">
-    <div class="col-md-6">
-      <field-text></field-text>
+    <div class="row">
+      <div class="col-md-6">
+        <field-text
+          [controlName] = "'nome'"
+          label="Nome"
+        ></field-text>
+        <field-text
+          [controlName] = "'cpfcnpj'"
+          label="CpfCnpj"
+        ></field-text>
+      </div>
+      <div class="col-md-6">
+        <field-text
+          [controlName] = "'veiculo'"
+          label="Veiculo"
+        ></field-text>
+        <field-text
+          [controlName] = "'placa'"
+          label="Placa"
+        ></field-text>
+      </div>
     </div>
-    <div class="col-md-6">
-      <field-text></field-text>
-    </div>
-  </div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Placa</mat-label>
-    <input matInput placeholder="Placa">
-  </mat-form-field>
-
+  </form>
 
   <mat-form-field appearance="standard">
     <mat-label>Filter</mat-label>

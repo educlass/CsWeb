@@ -2,6 +2,7 @@ import { AppMaterialModule } from './app-material/app-material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FieldTextComponent } from './shared-components/field-text/field-text.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -14,7 +15,9 @@ import { FieldTextComponent } from './shared-components/field-text/field-text.co
   ],
   imports: [
     CommonModule,
-    AppMaterialModule
+    AppMaterialModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class SharedModule { }

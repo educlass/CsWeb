@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 export interface UserData {
   id: string;
@@ -26,21 +27,38 @@ const NAMES: string[] = [
 })
 export class ClientesComponent implements OnInit {
 
-  ngOnInit(): void {
-  }
-
   displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
   dataSource: MatTableDataSource<UserData>;
+
+  form!: FormGroup;
+  control!: FormControl;
 
   @ViewChild(MatPaginator, {static: false}) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
 
-  constructor() {
+  constructor(private formBuilder: FormBuilder) {
     // Create 100 users
     const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
     console.log(users);
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(users);
+  }
+
+  ngOnInit() {
+    this.inicializarForm();
+  }
+
+  private inicializarForm() {
+    this.form = this.formBuilder.group({
+      nome: [null],
+      cpfcnpj: [null],
+      veiculo: [null],
+      placa: [null],
+
+    });
+    /*this.form = new FormGroup({
+      nome: new FormControl(null)
+    });*/
   }
 
   ngAfterViewInit() {
@@ -71,3 +89,5 @@ function createNewUser(id: number): UserData {
   };
 
 }
+
+
