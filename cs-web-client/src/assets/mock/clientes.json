@@ -1,0 +1,4 @@
+[
+  {"id": "1", "nome": "Mih", "cpfCnpj":"32904233873", "status": "Ativo"},
+  {"id": "2", "nome": "Edu", "cpfCnpj":"32904233800", "status": "Inativo"}
+]
