@@ -1,18 +1,10 @@
+import { ClientesService } from './../services/clientes.service';
 import { Clientes } from './../../shared/model/clientes';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  fruit: string;
-}
-
-
 
 @Component({
   selector: 'app-clientes',
@@ -21,7 +13,7 @@ export interface UserData {
 })
 export class ClientesComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'nome', 'cpfcnpj', 'status'];
+  displayedColumns: string[] = ['id', 'nome', 'cpfcnpj', 'status', 'acao'];
 
   clientes: Clientes[] = [];
   dataSource: MatTableDataSource<Clientes>;
@@ -32,15 +24,24 @@ export class ClientesComponent implements OnInit {
   @ViewChild(MatPaginator, {static: false}) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
 
-  constructor(private formBuilder: FormBuilder) {
-    // Create 100 users
-    console.log(this.clientes);
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(this.clientes);
+  constructor(private formBuilder: FormBuilder,
+    private clientesServices: ClientesService) {
+      this.dataSource = new MatTableDataSource(this.clientes);
   }
 
   ngOnInit() {
     this.inicializarForm();
+    this.clientesServices.listarClientes().subscribe(clientes =>{
+      this.clientes = clientes;
+      this.dataSource = new MatTableDataSource(this.clientes);
+      this.dataSource.paginator = this.paginator;
+    });
+    console.log(this.clientes);
+  }
+
+  ngAfterViewInit() {
+    //this.dataSource.paginator = this.paginator;
+    //this.dataSource.sort = this.sort;
   }
 
   private inicializarForm() {
@@ -51,14 +52,7 @@ export class ClientesComponent implements OnInit {
       placa: [null],
 
     });
-    /*this.form = new FormGroup({
-      nome: new FormControl(null)
-    });*/
-  }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {

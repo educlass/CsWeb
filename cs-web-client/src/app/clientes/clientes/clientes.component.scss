@@ -10,3 +10,38 @@ table {
 td, th {
   width: 25%;
 }
+
+.my-fab {
+  width: 20px;
+  height: 20px;
+  line-height: 14px;
+  font-size: 14px;
+
+  &::ng-deep .mat-button-wrapper{
+      line-height: 14px;
+      padding: 0;
+
+       .mat-icon {
+           font-size: 14px;
+           padding-right: 4px;
+           padding-top: 4px;
+       }
+ }
+}
+
+.example-button-row {
+  display: table-cell;
+  width: 490px;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  width: 90px;
+}
