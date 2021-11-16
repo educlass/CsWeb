@@ -11,20 +11,62 @@ import { Observable, of } from 'rxjs';
 export class BasicTableComponent implements OnInit {
 
   ngOnInit(): void {
-
+    //console.log(this.columns.map(c => c.cell));
+    //console.log(this.columns);
+    //this.getColumns(this.colunas);
 
   }
 
-  columns = [
+  colunas: string[] = ['position', 'name', 'weight', 'symbol'];
+
+  t: string="position";
+
+  teste2: string = "`${element." +this.t+"}`";
+
+  /*columns = [
     { columnDef: 'position', header: 'No.',    cell: (element: any) => `${element.position}` },
     { columnDef: 'name',     header: 'Name',   cell: (element: any) => `${element.name}`     },
     { columnDef: 'weight',   header: 'Weight', cell: (element: any) => `${element.weight}`   },
     { columnDef: 'symbol',   header: 'Symbol', cell: (element: any) => `${element.symbol}`   },
-  ];
+  ];*/
+
+  columns = this.getColumns(this.colunas);
 
   displayedColumns = this.columns.map(c => c.columnDef);
-  dataSource = new ExampleDataSource();
 
+  //dataSource = new ExampleDataSource();
+  dataSource = ELEMENT_DATA;
+
+
+  getColumns(colunas: string[]){
+
+    let colunasNovas: any[] = [];
+
+    colunas.forEach(col =>{
+
+       let t = new ColumnDefinition(col, col );
+       colunasNovas.push(t);
+
+    })
+
+    //console.log(colunasNovas);
+
+    return colunasNovas;
+  }
+
+  public renderizaCelula(elemento: any, key: any){
+    return (elemento && key)? elemento[key]:'';
+  }
+
+}
+
+export  class ColumnDefinition {
+  columnDef: string;
+  header: string;
+  //cell: any;
+  constructor(_columnDef: string, _header: string) {
+   this.columnDef = _columnDef;       this.header = _header;
+  }
 }
 
 
@@ -55,7 +97,7 @@ const ELEMENT_DATA: any[] = [
 export class ExampleDataSource extends DataSource<any> {
 
   connect(): Observable<Element[]> {
-    console.log(of(ELEMENT_DATA));
+    //console.log(of(ELEMENT_DATA));
     return of(ELEMENT_DATA);
   }
 
