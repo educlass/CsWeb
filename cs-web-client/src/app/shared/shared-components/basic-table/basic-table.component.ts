@@ -1,5 +1,6 @@
+import { ColunaTabela } from './model/ColunaTabela';
 import { DataSource } from '@angular/cdk/collections';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, of } from 'rxjs';
 
@@ -10,46 +11,34 @@ import { Observable, of } from 'rxjs';
 })
 export class BasicTableComponent implements OnInit {
 
-  ngOnInit(): void {
-    //console.log(this.columns.map(c => c.cell));
-    //console.log(this.columns);
-    //this.getColumns(this.colunas);
+  @Input() listaColuna:string[] = [];
+  @Input() controlName: string = '';
+  @Input() linhas: any[]=[];
+  @Input() addBotaoEditar: boolean = false;
+  @Input() addBotaoExcluir: boolean = false;
 
+  columns : any;
+  displayedColumns : any;
+  dataSource: any;
+
+  ngOnInit(): void {
+    this.columns = this.getColumns();
+    this.displayedColumns = this.columns.map((c: { columnDef: any; }) => c.columnDef);
+    this.dataSource = this.linhas;
   }
 
-  colunas: string[] = ['position', 'name', 'weight', 'symbol'];
-
-  t: string="position";
-
-  teste2: string = "`${element." +this.t+"}`";
-
-  /*columns = [
-    { columnDef: 'position', header: 'No.',    cell: (element: any) => `${element.position}` },
-    { columnDef: 'name',     header: 'Name',   cell: (element: any) => `${element.name}`     },
-    { columnDef: 'weight',   header: 'Weight', cell: (element: any) => `${element.weight}`   },
-    { columnDef: 'symbol',   header: 'Symbol', cell: (element: any) => `${element.symbol}`   },
-  ];*/
-
-  columns = this.getColumns(this.colunas);
-
-  displayedColumns = this.columns.map(c => c.columnDef);
-
-  //dataSource = new ExampleDataSource();
-  dataSource = ELEMENT_DATA;
-
-
-  getColumns(colunas: string[]){
-
+  private getColumns(){
     let colunasNovas: any[] = [];
 
-    colunas.forEach(col =>{
-
-       let t = new ColumnDefinition(col, col );
+    this.listaColuna.forEach(col =>{
+       let t = new ColunaTabela(col, col );
        colunasNovas.push(t);
-
     })
 
-    //console.log(colunasNovas);
+    if(this.addBotaoEditar||this.addBotaoExcluir){
+      let t = new ColunaTabela("acao","");
+      colunasNovas.push(t);
+    }
 
     return colunasNovas;
   }
@@ -60,45 +49,11 @@ export class BasicTableComponent implements OnInit {
 
 }
 
-export  class ColumnDefinition {
-  columnDef: string;
-  header: string;
-  //cell: any;
-  constructor(_columnDef: string, _header: string) {
-   this.columnDef = _columnDef;       this.header = _header;
-  }
-}
-
-
-const ELEMENT_DATA: any[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  {position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na'},
-  {position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg'},
-  {position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al'},
-  {position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si'},
-  {position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P'},
-  {position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S'},
-  {position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl'},
-  {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
-  {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
-  {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
-];
-
-
 export class ExampleDataSource extends DataSource<any> {
 
   connect(): Observable<Element[]> {
     //console.log(of(ELEMENT_DATA));
-    return of(ELEMENT_DATA);
+    return of();
   }
 
   disconnect() {}

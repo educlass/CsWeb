@@ -1,11 +1,29 @@
-<mat-table  [dataSource]="dataSource">
+<div class="mat-elevation-z3">
+  <mat-table [dataSource]="dataSource">
 
-  <ng-container *ngFor="let column of columns" [matColumnDef]=column.columnDef>
-    <mat-header-cell *matHeaderCellDef>{{ column.header }}</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{ renderizaCelula(row, column.columnDef) }}</mat-cell>
-  </ng-container>
+    <ng-container *ngFor="let column of columns" [matColumnDef]=column.columnDef>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column.header }}</mat-header-cell>
+      <!--<mat-cell *matCellDef="let row">{{ renderizaCelula(row, column.columnDef) }}</mat-cell>-->
+      <mat-cell *matCellDef="let row">
 
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        {{ renderizaCelula(row, column.columnDef) }}
 
-</mat-table>
+        <div *ngIf="column.columnDef === 'acao'" class="button-container">
+          <button *ngIf="addBotaoEditar" mat-mini-fab color="accent">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button *ngIf="addBotaoExcluir" mat-mini-fab color="warn">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Itens por Pagina">
+  </mat-paginator>
+</div>
