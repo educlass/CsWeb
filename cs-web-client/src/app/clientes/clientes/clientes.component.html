@@ -1,13 +1,7 @@
 <mat-card>
   <mat-card-title>Clientes</mat-card-title>
 
-  <basic-table
-    [listaColuna]="colunas"
-    [linhas]="ELEMENT_DATA"
-    [addBotaoEditar]="true"
-    [addBotaoExcluir]="true">
 
-  </basic-table>
 
   <form [formGroup]="form">
 
@@ -48,54 +42,17 @@
       </div>
     </div>
 
+    <basic-table *ngIf="dataSource.length > 0"
+      [listaColuna]="colunas"
+      [linhas]="dataSource"
+      [addBotaoEditar]="true"
+      [addBotaoExcluir]="true"
+      [addPaginacao]="true">
+    </basic-table>
+
   </form>
 
-  <div class="mat-elevation-z3">
-    <table mat-table [dataSource]="dataSource">
 
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
-        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="nome">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
-        <td mat-cell *matCellDef="let row"> {{row.nome}}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="cpfcnpj">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Cpf/Cnpj </th>
-        <td mat-cell *matCellDef="let row"> {{row.cpfcnpj}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-        <td mat-cell *matCellDef="let row"> {{row.status}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="acao">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
-        <td mat-cell *matCellDef="let row">
-          <div class="button-container">
-              <button mat-mini-fab color="accent" >
-                <mat-icon>edit</mat-icon>
-              </button>
-              <button mat-mini-fab color="warn">
-                <mat-icon>delete</mat-icon>
-              </button>
-          </div>
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-    </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                 showFirstLastButtons
-                 aria-label="Itens por Pagina">
-    </mat-paginator>
-  </div>
 </mat-card>
 
 

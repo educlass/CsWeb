@@ -1,8 +1,10 @@
 import { ColunaTabela } from './model/ColunaTabela';
 import { DataSource } from '@angular/cdk/collections';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, of } from 'rxjs';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'basic-table',
@@ -16,15 +18,31 @@ export class BasicTableComponent implements OnInit {
   @Input() linhas: any[]=[];
   @Input() addBotaoEditar: boolean = false;
   @Input() addBotaoExcluir: boolean = false;
+  @Input() addPaginacao: boolean = false;
+
+  @ViewChild(MatPaginator, {static: false}) paginator!: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort!: MatSort;
 
   columns : any;
   displayedColumns : any;
-  dataSource: any;
+  dataSource: MatTableDataSource<any>;
+
+  constructor() {
+      this.dataSource = new MatTableDataSource(this.linhas);
+      this.dataSource.paginator = this.paginator;
+  }
+
+  ngAfterViewInit() {
+    //this.dataSource = new MatTableDataSource(this.linhas);
+    this.dataSource.paginator = this.paginator;
+  }
+
 
   ngOnInit(): void {
     this.columns = this.getColumns();
     this.displayedColumns = this.columns.map((c: { columnDef: any; }) => c.columnDef);
-    this.dataSource = this.linhas;
+    this.dataSource = new MatTableDataSource(this.linhas);
+    this.dataSource.paginator = this.paginator;
   }
 
   private getColumns(){
@@ -49,7 +67,7 @@ export class BasicTableComponent implements OnInit {
 
 }
 
-export class ExampleDataSource extends DataSource<any> {
+/*export class ExampleDataSource extends DataSource<any> {
 
   connect(): Observable<Element[]> {
     //console.log(of(ELEMENT_DATA));
@@ -57,4 +75,4 @@ export class ExampleDataSource extends DataSource<any> {
   }
 
   disconnect() {}
-}
+}*/

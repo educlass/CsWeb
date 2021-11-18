@@ -13,12 +13,12 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class ClientesComponent implements OnInit {
 
-  colunas: string[] = ['position', 'name', 'weight', 'symbol'];
+  //colunas: string[] = ['position', 'name', 'weight', 'symbol'];
 
-  displayedColumns: string[] = ['id', 'nome', 'cpfcnpj', 'status', 'acao'];
+  colunas: string[] = ['id', 'nome', 'cpfcnpj', 'status'];
 
-  clientes: Clientes[] = [];
-  dataSource: MatTableDataSource<Clientes>;
+  //clientes: Clientes[] = [];
+  dataSource: Clientes[] = [];
 
   form!: FormGroup;
   control!: FormControl;
@@ -27,23 +27,23 @@ export class ClientesComponent implements OnInit {
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
 
   constructor(private formBuilder: FormBuilder,
-    private clientesServices: ClientesService) {
-      this.dataSource = new MatTableDataSource(this.clientes);
+              private clientesServices: ClientesService) {
+
+    this.inicializarForm();
+    this.clientesServices.listarClientes().subscribe(clientes =>{
+      //this.clientes = clientes;
+      this.dataSource = clientes;
+      console.log(this.dataSource);
+    });
+
   }
 
   ngOnInit() {
-    this.inicializarForm();
-    this.clientesServices.listarClientes().subscribe(clientes =>{
-      this.clientes = clientes;
-      this.dataSource = new MatTableDataSource(this.clientes);
-      this.dataSource.paginator = this.paginator;
-    });
-    console.log(this.clientes);
+
   }
 
   ngAfterViewInit() {
-    //this.dataSource.paginator = this.paginator;
-    //this.dataSource.sort = this.sort;
+
   }
 
   private inicializarForm() {
@@ -58,16 +58,7 @@ export class ClientesComponent implements OnInit {
   }
 
   pesquisar(){
-    console.log(this.form.value);
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+    console.log(this.dataSource);
   }
 
    ELEMENT_DATA: any[] = [
@@ -91,6 +82,15 @@ export class ClientesComponent implements OnInit {
     {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
     {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
     {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
+  ];
+
+  data = [
+    {"id": "1", "nome": "Mih", "cpfcnpj":"32904233873", "status": "Ativo"},
+    {"id": "2", "nome": "Edu", "cpfcnpj":"32904233800", "status": "Inativo"},
+    {"id": "3", "nome": "Bella", "cpfcnpj":"32904233873", "status": "Ativo"},
+    {"id": "4", "nome": "Banhuela", "cpfcnpj":"32904233800", "status": "Inativo"},
+    {"id": "5", "nome": "Nathan", "cpfcnpj":"32904233873", "status": "Ativo"},
+    {"id": "6", "nome": "Lala", "cpfcnpj":"32904233800", "status": "Inativo"}
   ];
 
 }
