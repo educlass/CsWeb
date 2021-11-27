@@ -16,6 +16,7 @@ export class BasicTableComponent implements OnInit {
   @Input() listaColuna:string[] = [];
   @Input() controlName: string = '';
   @Input() linhas: any[]=[];
+  @Input() tituloTabela: string = '';
   @Input() addBotaoEditar: boolean = false;
   @Input() addBotaoExcluir: boolean = false;
   @Input() addPaginacao: boolean = false;
@@ -54,7 +55,7 @@ export class BasicTableComponent implements OnInit {
     })
 
     if(this.addBotaoEditar||this.addBotaoExcluir){
-      let t = new ColunaTabela("acao","");
+      let t = new ColunaTabela("acao","Ação");
       colunasNovas.push(t);
     }
 
