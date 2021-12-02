@@ -1,13 +1,10 @@
 <mat-card>
   <mat-card-title>Clientes</mat-card-title>
-
-
-
   <form [formGroup]="form">
 
     <div class="row text-end">
       <div class="col-md-12">
-        <button  mat-raised-button color="primary">
+        <button mat-raised-button color="primary">
           <mat-icon>add</mat-icon>
         </button>
       </div>
@@ -15,24 +12,12 @@
 
     <div class="row">
       <div class="col-md-6">
-        <field-text
-          [controlName] = "'nome'"
-          label="Nome"
-        ></field-text>
-        <field-text
-          [controlName] = "'cpfcnpj'"
-          label="Cpf/Cnpj"
-        ></field-text>
+        <field-text [controlName]="'nome'" label="Nome"></field-text>
+        <field-text [controlName]="'cpfcnpj'" label="Cpf/Cnpj"></field-text>
       </div>
       <div class="col-md-6">
-        <field-text
-          [controlName] = "'veiculo'"
-          label="Veiculo"
-        ></field-text>
-        <field-text
-          [controlName] = "'placa'"
-          label="Placa"
-        ></field-text>
+        <field-text [controlName]="'veiculo'" label="Veiculo"></field-text>
+        <field-text [controlName]="'placa'" label="Placa"></field-text>
       </div>
     </div>
 
@@ -42,18 +27,9 @@
       </div>
     </div>
 
-    <basic-table *ngIf="dataSource.length > 0"
-      [listaColuna]="colunas"
-      [linhas]="dataSource"
-      [tituloTabela]="'Teste'"
-      [addBotaoEditar]="true"
-      [addBotaoExcluir]="true"
-      [addPaginacao]="true">
+    <basic-table *ngIf="dataSource.length > 0" [listaColuna]="colunas" [linhas]="dataSource" [tituloTabela]="'Teste'"
+      [addBotaoEditar]="true" [addBotaoExcluir]="true" [addPaginacao]="true">
     </basic-table>
 
   </form>
-
-
 </mat-card>
-
-

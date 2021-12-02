@@ -1,10 +1,10 @@
-import { ClientesService } from './../services/clientes.service';
-import { Clientes } from './../../shared/model/clientes';
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+
+import { Clientes } from './../../shared/model/clientes';
+import { ClientesService } from './../services/clientes.service';
 
 @Component({
   selector: 'app-clientes',

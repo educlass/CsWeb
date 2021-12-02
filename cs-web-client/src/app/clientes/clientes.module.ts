@@ -7,12 +7,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CadastrarClienteComponent } from './cadastrar-cliente/cadastrar-cliente.component';
 
 
 
 @NgModule({
   declarations: [
-    ClientesComponent
+    ClientesComponent,
+    CadastrarClienteComponent
   ],
   imports: [
     CommonModule,
