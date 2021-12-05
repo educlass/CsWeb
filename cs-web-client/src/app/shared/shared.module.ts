@@ -6,6 +6,7 @@ import { AppMaterialModule } from './app-material/app-material.module';
 import { BasicTableComponent } from './shared-components/basic-table/basic-table.component';
 import { FieldSelectComponent } from './shared-components/field-select/field-select.component';
 import { FieldTextComponent } from './shared-components/field-text/field-text.component';
+import { CheckboxTableComponent } from './shared-components/checkbox-table/checkbox-table.component';
 
 
 
@@ -13,12 +14,14 @@ import { FieldTextComponent } from './shared-components/field-text/field-text.co
   declarations: [
     FieldTextComponent,
     BasicTableComponent,
-    FieldSelectComponent
+    FieldSelectComponent,
+    CheckboxTableComponent
   ],
   exports:[
     FieldTextComponent,
     FieldSelectComponent,
-    BasicTableComponent
+    BasicTableComponent,
+    CheckboxTableComponent
   ],
   imports: [
     CommonModule,

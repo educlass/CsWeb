@@ -12,6 +12,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [],
@@ -28,7 +29,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatPaginatorModule,
     MatInputModule,
     MatTabsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule
 
   ]
 })

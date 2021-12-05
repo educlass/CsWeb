@@ -1,0 +1,26 @@
+<mat-table #table [dataSource]="items">
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="select">
+    <mat-header-cell *matHeaderCellDef>
+      <mat-checkbox #checkBox (change)="checkAll(checkBox)"></mat-checkbox>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+
+      <mat-checkbox [(ngModel)]="element.checked" (click)="changeChkState(element.id)"></mat-checkbox>
+
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="changeChkState(row.id)"></mat-row>
+</mat-table>
+
+<div *ngFor="let checkedItem of checked">
+  <span> selected Key is :: <strong>{{checkedItem.name }} </strong> :
+  <strong> {{checkedItem.checked}}</strong> </span>
+</div>
