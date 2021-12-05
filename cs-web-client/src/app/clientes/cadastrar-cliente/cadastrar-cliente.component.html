@@ -5,23 +5,49 @@
       <mat-tab label="Informações Básicas">
         <form>
           <div class="container">
+
             <div class="row">
-              <div class="col-md-3">
-                <field-text label="Nome"></field-text>
+              <div class="col-md-2">
+                <field-select [label]="'Pessoa'" [itens]="itensPessoa"></field-select>
+              </div>
+              <div class="col-md-4">
+                <field-text label="Cpf/Cnpj"></field-text>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <field-text [label]="'Nome'"></field-text>
+              </div>
+              <div class="col-md-2">
+                <field-text [label]="'Data Nascimento'"></field-text>
+              </div>
+              <div class="col-md-2">
+                <field-select [label]="'Sexo'" [itens]="itensPessoa"></field-select>
+              </div>
+              <div class="col-md-2">
+                <field-select [label]="'Estado Civil'" [itens]="itensPessoa"></field-select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2">
+                <field-select [label]="'Tipo Documento'" [itens]="itensPessoa"></field-select>
+              </div>
+              <div class="col-md-4">
+                <field-text [label]="'Número'"></field-text>
               </div>
               <div class="col-md-3">
-                <field-text label="Nome"></field-text>
+                <field-text [label]="'Emissor'"></field-text>
               </div>
-              <div class="col-md-5">
-                <field-text label="Nome"></field-text>
+              <div class="col-md-3">
+                <field-text [label]="'Data Emissão'"></field-text>
               </div>
             </div>
           </div>
 
         </form>
       </mat-tab>
-      <mat-tab label="Second"> Content 2 </mat-tab>
-      <mat-tab label="Third"> Content 3 </mat-tab>
+      <mat-tab label="Informações Adicionais"></mat-tab>
     </mat-tab-group>
   </mat-card>
 </mat-card>

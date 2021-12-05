@@ -9,7 +9,13 @@ export class CadastrarClienteComponent implements OnInit {
 
   constructor() { }
 
+  itensPessoa:any[]= [
+    {value: 'F', viewValue: 'Física'},
+    {value: 'J', viewValue: 'Jurídica'}
+  ]
+
   ngOnInit(): void {
+
   }
 
 }
