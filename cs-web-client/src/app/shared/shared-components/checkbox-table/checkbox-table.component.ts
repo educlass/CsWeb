@@ -49,12 +49,12 @@ export class CheckboxTableComponent implements OnInit {
     });
   }
 
-  checkAll(checkBox:any) {
+  checkAll() {
     const numChecked = this.checked.length;
     const numItens = this.items.length;
 
     this.items.forEach(chk => {
-      if ((numChecked == numItens)) {
+      if ((numChecked === numItens)) {
         chk.checked = false;
       }else {
         chk.checked = true;
