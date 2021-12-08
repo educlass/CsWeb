@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { ControlContainer, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'field-select',
@@ -14,14 +14,13 @@ export class FieldSelectComponent implements OnInit {
   @Input() controlName: string = '';
   @Input() label: string = '';
   @Input() itens: any[] = [];
-  @Input() style: string = '';
+  @Input() obrigatorio: boolean = false;
 
-  constructor() { }
+  constructor(private controlContainer: ControlContainer) { }
 
   ngOnInit(): void {
-
+    this.form = this.controlContainer.control as FormGroup;
+    this.control = this.form.get(this.controlName) as FormControl;
   }
-
-
 
 }

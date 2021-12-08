@@ -3,53 +3,92 @@
   <mat-card>
     <mat-tab-group>
       <mat-tab label="Informações Básicas">
-        <form>
+        <form [formGroup]="form">
           <div class="container">
 
-            <div class="row">
+            <div class="row" style="margin-top: 12px;">
               <div class="col-md-2">
-                <field-select [label]="'Pessoa'" [itens]="itensPessoa"></field-select>
+                <field-select [label]="'Pessoa'" [itens]="itensPessoa" [controlName]="'tipoPessoa'"></field-select>
               </div>
               <div class="col-md-4">
-                <field-text label="Cpf/Cnpj"></field-text>
+                <field-text label="Cpf/Cnpj" [controlName]="'cpfcnpj'"></field-text>
               </div>
             </div>
 
             <div class="row">
-              <div class="col-md-6">
-                <field-text [label]="'Nome'"></field-text>
+              <div class="col-md-5">
+                <field-text [label]="'Nome'" [controlName]="'nome'"></field-text>
+              </div>
+              <div class="col-md-3">
+                <field-data [label]="'Data Nascimento'" [controlName]="'dataNasc'"></field-data>
               </div>
               <div class="col-md-2">
-                <field-text [label]="'Data Nascimento'"></field-text>
+                <field-select [label]="'Sexo'" [itens]="tipoSexo" [controlName]="'sexo'"></field-select>
               </div>
               <div class="col-md-2">
-                <field-select [label]="'Sexo'" [itens]="itensPessoa"></field-select>
-              </div>
-              <div class="col-md-2">
-                <field-select [label]="'Estado Civil'" [itens]="itensPessoa"></field-select>
+                <field-select [label]="'Estado Civil'" [itens]="estadoCivil" [controlName]="'estadoCivil'"></field-select>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-2">
-                <field-select [label]="'Tipo Documento'" [itens]="itensPessoa"></field-select>
+              <div class="col-md-3">
+                <field-select [label]="'Tipo Documento'" [itens]="tipoDocumentos" [controlName]="'tipoDocumento'"></field-select>
               </div>
               <div class="col-md-4">
-                <field-text [label]="'Número'"></field-text>
+                <field-text [label]="'Número'" [controlName]="'numeroDocumento'"></field-text>
+              </div>
+              <div class="col-md-2">
+                <field-text [label]="'Emissor'" [controlName]="'emissor'"></field-text>
               </div>
               <div class="col-md-3">
-                <field-text [label]="'Emissor'"></field-text>
+                <field-data [label]="'Data Emissão'" [controlName]="'dataEmissao'"></field-data>
               </div>
-              <div class="col-md-3">
-                <field-text [label]="'Data Emissão'"></field-text>
+            </div>
+
+            <mat-divider [inset]="true"></mat-divider>
+            <mat-card-subtitle style="margin-top: 12px;"><strong>Endereço Residencial</strong></mat-card-subtitle>
+
+            <!-- endereco residencial -->
+
+            <div class="row" style="margin-top: 12px;">
+              <div class="col-md-2">
+                <field-text [label]="'Cep'" [controlName]="'cepResidencial'"></field-text>
               </div>
+              <div class="col-md-8">
+                <field-text [label]="'Logradouro'" [controlName]="'endResidencial'"></field-text>
+              </div>
+              <div class="col-md-2">
+                <field-text [label]="'Número'" [controlName]="'numResidencial'"></field-text>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-8">
+                <field-text [label]="'Complemento'" [controlName]="'complementoResidencial'"></field-text>
+              </div>
+              <div class="col-md-4">
+                <field-text [label]="'Bairro'" [controlName]="'bairroResidencial'"></field-text>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <field-text [label]="'UF'" [controlName]="'ufResidencial'"></field-text>
+              </div>
+              <div class="col-md-8">
+                <field-text [label]="'Cidade'" [controlName]="'cidadeResidencial'"></field-text>
+              </div>
+            </div>
+            <div class="col-md-12 text-end">
+              <button mat-raised-button color="primary" (click)="salvarCliente()">
+                <mat-icon>save</mat-icon>
+              </button>
             </div>
           </div>
-
         </form>
       </mat-tab>
       <mat-tab label="Informações Adicionais">
         <div class="container">
-          <checkbox-table></checkbox-table>
+
         </div>
       </mat-tab>
     </mat-tab-group>
