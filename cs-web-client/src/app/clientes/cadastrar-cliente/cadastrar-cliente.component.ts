@@ -56,6 +56,10 @@ export class CadastrarClienteComponent implements OnInit {
       emissor: [null],
       dataEmissao: [null],
 
+      profissao: [null],
+      numCnh: [null],
+      tipoCnh: [null],
+
       cepResidencial: [null],
       endResidencial: [null],
       numResidencial: [null],
@@ -68,13 +72,16 @@ export class CadastrarClienteComponent implements OnInit {
 
       //informacoes adicionais
 
+      cepComercial: [null],
       endComercial: [null],
+
       numComercial: [null],
       complementoComercial: [null],
-      cidadeComercial: [null],
+
       bairroComercial: [null],
-      cepComercial: [null],
       ufComercial: [null],
+      cidadeComercial: [null],
+
       email: [null],
       fone1: [null],
       fone2: [null],
@@ -84,8 +91,7 @@ export class CadastrarClienteComponent implements OnInit {
 
 
 
-      profissao: [null],
-      numCnh: [null],
+
 
     });
 
