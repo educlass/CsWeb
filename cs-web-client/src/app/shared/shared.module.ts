@@ -8,6 +8,7 @@ import { CheckboxTableComponent } from './shared-components/checkbox-table/check
 import { FieldDataComponent } from './shared-components/field-data/field-data.component';
 import { FieldSelectComponent } from './shared-components/field-select/field-select.component';
 import { FieldTextComponent } from './shared-components/field-text/field-text.component';
+import { FieldTextareaComponent } from './shared-components/field-textarea/field-textarea.component';
 
 
 
@@ -17,14 +18,16 @@ import { FieldTextComponent } from './shared-components/field-text/field-text.co
     BasicTableComponent,
     FieldSelectComponent,
     CheckboxTableComponent,
-    FieldDataComponent
+    FieldDataComponent,
+    FieldTextareaComponent
   ],
   exports:[
     FieldTextComponent,
     FieldSelectComponent,
     BasicTableComponent,
     CheckboxTableComponent,
-    FieldDataComponent
+    FieldDataComponent,
+    FieldTextareaComponent
   ],
   imports: [
     CommonModule,
