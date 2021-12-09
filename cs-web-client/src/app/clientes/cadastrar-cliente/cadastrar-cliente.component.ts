@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Mask } from 'src/app/shared/enums/mask';
 
 @Component({
   selector: 'cadastrar-cliente',
@@ -10,6 +11,8 @@ export class CadastrarClienteComponent implements OnInit {
 
   form!: FormGroup;
   control!: FormControl;
+
+  mask = Mask;
 
   constructor(private formBuilder: FormBuilder) {
     this.inicializarForm();
@@ -46,7 +49,7 @@ export class CadastrarClienteComponent implements OnInit {
       tipoPessoa: [""],
       cpfcnpj: [],
 
-      nome: [null],
+      nome: [null,[Validators.required]],
       dataNasc: [null],
       sexo: [""],
       estadoCivil: [""],
@@ -82,22 +85,17 @@ export class CadastrarClienteComponent implements OnInit {
       ufComercial: [null],
       cidadeComercial: [null],
 
-      email: [null],
+      email: [null,[Validators.email]],
       fone1: [null],
       fone2: [null],
-      observacao: [null],
-
-      //outras informacoes
-
-
-
-
+      observacao: [null]
 
     });
 
   }
 
   salvarCliente(){
+    console.log(this.form.valid);
     console.log(this.form.value);
   }
 

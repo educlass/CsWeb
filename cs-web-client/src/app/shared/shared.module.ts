@@ -10,6 +10,8 @@ import { FieldSelectComponent } from './shared-components/field-select/field-sel
 import { FieldTextComponent } from './shared-components/field-text/field-text.component';
 import { FieldTextareaComponent } from './shared-components/field-textarea/field-textarea.component';
 
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+
 
 
 @NgModule({
@@ -27,13 +29,15 @@ import { FieldTextareaComponent } from './shared-components/field-textarea/field
     BasicTableComponent,
     CheckboxTableComponent,
     FieldDataComponent,
-    FieldTextareaComponent
+    FieldTextareaComponent,
+
   ],
   imports: [
     CommonModule,
     AppMaterialModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxMaskModule.forRoot()
   ]
 })
 export class SharedModule { }

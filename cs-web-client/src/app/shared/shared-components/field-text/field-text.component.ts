@@ -13,6 +13,7 @@ export class FieldTextComponent implements OnInit {
 
   @Input() controlName: string = '';
   @Input() label: string = '';
+  @Input() mask: string = '';
 
   constructor(
     private controlContainer: ControlContainer
