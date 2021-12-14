@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Mask } from 'src/app/shared/enums/mask';
 
@@ -18,6 +18,7 @@ export class CadastrarClienteComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {
     this.inicializarForm();
+
    }
 
   itensPessoa:any[]= [
@@ -42,6 +43,10 @@ export class CadastrarClienteComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+
+  }
+
+  ngAfterViewInit() {
 
   }
 

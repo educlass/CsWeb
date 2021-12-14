@@ -1,6 +1,6 @@
 import { ColunaTabela } from './model/ColunaTabela';
 import { DataSource } from '@angular/cdk/collections';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, of } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
@@ -21,6 +21,8 @@ export class BasicTableComponent implements OnInit {
   @Input() addBotaoExcluir: boolean = false;
   @Input() addPaginacao: boolean = false;
 
+  @Output() linhaSelecionada = new EventEmitter();
+
   @ViewChild(MatPaginator, {static: false}) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
 
@@ -37,7 +39,6 @@ export class BasicTableComponent implements OnInit {
     //this.dataSource = new MatTableDataSource(this.linhas);
     this.dataSource.paginator = this.paginator;
   }
-
 
   ngOnInit(): void {
     this.columns = this.getColumns();
@@ -66,14 +67,8 @@ export class BasicTableComponent implements OnInit {
     return (elemento && key)? elemento[key]:'';
   }
 
-}
-
-/*export class ExampleDataSource extends DataSource<any> {
-
-  connect(): Observable<Element[]> {
-    //console.log(of(ELEMENT_DATA));
-    return of();
+  public selecionarLinhaTabela(linha:any){
+    this.linhaSelecionada.emit(linha);
   }
 
-  disconnect() {}
-}*/
+}

@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { Router } from '@angular/router';
 
 import { Clientes } from './../../shared/model/clientes';
 import { ClientesService } from './../services/clientes.service';
@@ -14,8 +15,6 @@ import { ClientesService } from './../services/clientes.service';
 export class ClientesComponent implements OnInit {
 
   colunas: string[] = ['id', 'nome', 'cpfcnpj', 'status'];
-
-  //clientes: Clientes[] = [];
   dataSource: Clientes[] = [];
 
   form!: FormGroup;
@@ -24,24 +23,26 @@ export class ClientesComponent implements OnInit {
   @ViewChild(MatPaginator, {static: false}) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
 
+  @ViewChild('compIncluir') incluir:any;
+
+
   constructor(private formBuilder: FormBuilder,
-              private clientesServices: ClientesService) {
+              private clientesServices: ClientesService,
+              private router: Router) {
 
     this.inicializarForm();
     this.clientesServices.listarClientes().subscribe(clientes =>{
-      //this.clientes = clientes;
       this.dataSource = clientes;
-      console.log(this.dataSource);
     });
 
   }
 
   ngOnInit() {
-
+    this.incluir.nativeElement.focus();
   }
 
   ngAfterViewInit() {
-
+    this.incluir.nativeElement.focus();
   }
 
   private inicializarForm() {
@@ -57,6 +58,18 @@ export class ClientesComponent implements OnInit {
 
   pesquisar(){
     console.log(this.dataSource);
+  }
+  exibirCadastro: boolean =  false;
+
+  public novoCliente(){
+    console.log('entrou');
+    console.log(this.exibirCadastro);
+    this.exibirCadastro = !this.exibirCadastro;
+    return this.exibirCadastro;
+  }
+
+  exibirDetalheCliente(cliente:Clientes){
+    console.log(cliente);
   }
 
 }
