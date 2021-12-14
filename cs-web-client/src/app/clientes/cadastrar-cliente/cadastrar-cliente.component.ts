@@ -1,7 +1,8 @@
-import { CsErrorStateMatcher } from './../../shared/shared-components/error-state-matcher';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Mask } from 'src/app/shared/enums/mask';
+
+import { CsErrorStateMatcher } from './../../shared/shared-components/error-state-matcher';
 
 @Component({
   selector: 'cadastrar-cliente',
@@ -99,10 +100,12 @@ export class CadastrarClienteComponent implements OnInit {
 
     if(this.form.valid){
       console.log('VALIDO');
+      this.form.disable();
     }else{
       console.log('invalido');
       console.log(this.form.hasError('required'));
       console.log(this.form.value);
+
     }
 
   }
