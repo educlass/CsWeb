@@ -14,6 +14,7 @@ export class FieldTextComponent implements OnInit {
   @Input() controlName: string = '';
   @Input() label: string = '';
   @Input() mask: string = '';
+  @Input() matcher: any;
 
   constructor(
     private controlContainer: ControlContainer

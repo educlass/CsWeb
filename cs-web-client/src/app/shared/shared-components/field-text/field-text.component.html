@@ -1,5 +1,4 @@
-  <mat-form-field appearance="outline" [formGroup]="form">
-    <mat-label>{{label}}</mat-label>
-    <input matInput [formControl]="control" [mask]="mask"
-      placeholder={{label}}>
-  </mat-form-field>
+<mat-form-field appearance="outline" [formGroup]="form">
+  <mat-label>{{label}}</mat-label>
+  <input matInput [formControl]="control" [mask]="mask" placeholder={{label}} [errorStateMatcher]="matcher">
+</mat-form-field>

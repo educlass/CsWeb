@@ -1,3 +1,4 @@
+import { CsErrorStateMatcher } from './../../shared/shared-components/error-state-matcher';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Mask } from 'src/app/shared/enums/mask';
@@ -11,7 +12,7 @@ export class CadastrarClienteComponent implements OnInit {
 
   form!: FormGroup;
   control!: FormControl;
-
+  matcher = new CsErrorStateMatcher();
   mask = Mask;
 
   constructor(private formBuilder: FormBuilder) {
@@ -95,8 +96,15 @@ export class CadastrarClienteComponent implements OnInit {
   }
 
   salvarCliente(){
-    console.log(this.form.valid);
-    console.log(this.form.value);
+
+    if(this.form.valid){
+      console.log('VALIDO');
+    }else{
+      console.log('invalido');
+      console.log(this.form.hasError('required'));
+      console.log(this.form.value);
+    }
+
   }
 
 }
