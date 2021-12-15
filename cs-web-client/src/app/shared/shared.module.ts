@@ -11,7 +11,8 @@ import { FieldTextComponent } from './shared-components/field-text/field-text.co
 import { FieldTextareaComponent } from './shared-components/field-textarea/field-textarea.component';
 
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { AutofocusDirective } from './directive/autofocus.directive'
+import { AutofocusDirective } from './directive/autofocus.directive';
+import { BarraDivisaoComponent } from './shared-components/barra-divisao/barra-divisao.component'
 
 
 
@@ -23,7 +24,8 @@ import { AutofocusDirective } from './directive/autofocus.directive'
     CheckboxTableComponent,
     FieldDataComponent,
     FieldTextareaComponent,
-    AutofocusDirective
+    AutofocusDirective,
+    BarraDivisaoComponent
   ],
   exports:[
     FieldTextComponent,
@@ -32,6 +34,7 @@ import { AutofocusDirective } from './directive/autofocus.directive'
     CheckboxTableComponent,
     FieldDataComponent,
     FieldTextareaComponent,
+    BarraDivisaoComponent
 
   ],
   imports: [

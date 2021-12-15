@@ -1,17 +1,17 @@
 <mat-card>
-  <mat-card-title>Clientes</mat-card-title>
   <div class="container">
-
+    <barra-divisao></barra-divisao>
+    <mat-card-title>Clientes</mat-card-title>
+    <barra-divisao></barra-divisao>
     <form [formGroup]="form">
 
       <div class="row text-end">
         <div class="col-md-12">
-          <!-- <button mat-raised-button color="primary" routerLink="/clientes/cadastrar">
-            <mat-icon>add</mat-icon>
-          </button> -->
+          <barra-divisao></barra-divisao>
           <button mat-raised-button color="primary" (click)="novoCliente()">
             <mat-icon>add</mat-icon>
           </button>
+          <barra-divisao></barra-divisao>
         </div>
       </div>
 
@@ -27,19 +27,22 @@
       </div>
 
       <div class="row text-end">
+        <barra-divisao></barra-divisao>
         <div class="col-md-12">
           <button mat-raised-button color="primary" (click)="pesquisar()">Pesquisar</button>
         </div>
+        <barra-divisao></barra-divisao>
       </div>
 
-      <basic-table *ngIf="dataSource.length > 0" [listaColuna]="colunas" [linhas]="dataSource" [tituloTabela]="'Teste'"
+      <basic-table *ngIf="dataSource.length > 0" [listaColuna]="colunas" [linhas]="dataSource" [tituloTabela]="'Lista de Clientes'"
         [addBotaoEditar]="true" [addBotaoExcluir]="true" [addPaginacao]="true"
         (linhaSelecionada)="exibirDetalheCliente($event)">
       </basic-table>
-
-      <cadastrar-cliente *ngIf="exibirCadastro"></cadastrar-cliente>
-
     </form>
+
+      <barra-divisao></barra-divisao>
+      <cadastrar-cliente *ngIf="exibirCadastro"></cadastrar-cliente>
 
   </div>
 </mat-card>
+
