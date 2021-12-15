@@ -1,42 +1,45 @@
 <mat-card>
   <mat-card-title>Clientes</mat-card-title>
-  <form [formGroup]="form">
+  <div class="container">
 
-    <div class="row text-end">
-      <div class="col-md-12">
-        <!-- <button mat-raised-button color="primary" routerLink="/clientes/cadastrar">
-          <mat-icon>add</mat-icon>
-        </button> -->
-        <button mat-raised-button color="primary" (click)="novoCliente()">
-          <mat-icon>add</mat-icon>
-        </button>
+    <form [formGroup]="form">
+
+      <div class="row text-end">
+        <div class="col-md-12">
+          <!-- <button mat-raised-button color="primary" routerLink="/clientes/cadastrar">
+            <mat-icon>add</mat-icon>
+          </button> -->
+          <button mat-raised-button color="primary" (click)="novoCliente()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-md-6">
-        <field-text [controlName]="'nome'" label="Nome"></field-text>
-        <field-text [controlName]="'cpfcnpj'" label="Cpf/Cnpj"></field-text>
+      <div class="row">
+        <div class="col-md-6">
+          <field-text [controlName]="'nome'" label="Nome"></field-text>
+          <field-text [controlName]="'cpfcnpj'" label="Cpf/Cnpj"></field-text>
+        </div>
+        <div class="col-md-6">
+          <field-text [controlName]="'veiculo'" label="Veiculo"></field-text>
+          <field-text [controlName]="'placa'" label="Placa"></field-text>
+        </div>
       </div>
-      <div class="col-md-6">
-        <field-text [controlName]="'veiculo'" label="Veiculo"></field-text>
-        <field-text [controlName]="'placa'" label="Placa"></field-text>
+
+      <div class="row text-end">
+        <div class="col-md-12">
+          <button mat-raised-button color="primary" (click)="pesquisar()">Pesquisar</button>
+        </div>
       </div>
-    </div>
 
-    <div class="row text-end">
-      <div class="col-md-12">
-        <button mat-raised-button color="primary" (click)="pesquisar()">Pesquisar</button>
-      </div>
-    </div>
+      <basic-table *ngIf="dataSource.length > 0" [listaColuna]="colunas" [linhas]="dataSource" [tituloTabela]="'Teste'"
+        [addBotaoEditar]="true" [addBotaoExcluir]="true" [addPaginacao]="true"
+        (linhaSelecionada)="exibirDetalheCliente($event)">
+      </basic-table>
 
-    <basic-table *ngIf="dataSource.length > 0" [listaColuna]="colunas" [linhas]="dataSource" [tituloTabela]="'Teste'"
-      [addBotaoEditar]="true" [addBotaoExcluir]="true" [addPaginacao]="true"
-      (linhaSelecionada)="exibirDetalheCliente($event)">
-    </basic-table>
+      <cadastrar-cliente *ngIf="exibirCadastro"></cadastrar-cliente>
 
-    <cadastrar-cliente #compIncluir ></cadastrar-cliente>
+    </form>
 
-  </form>
-
+  </div>
 </mat-card>

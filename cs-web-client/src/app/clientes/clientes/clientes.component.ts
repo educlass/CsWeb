@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -23,9 +23,6 @@ export class ClientesComponent implements OnInit {
   @ViewChild(MatPaginator, {static: false}) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
 
-  @ViewChild('compIncluir') incluir:any;
-
-
   constructor(private formBuilder: FormBuilder,
               private clientesServices: ClientesService,
               private router: Router) {
@@ -38,11 +35,9 @@ export class ClientesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.incluir.nativeElement.focus();
   }
 
   ngAfterViewInit() {
-    this.incluir.nativeElement.focus();
   }
 
   private inicializarForm() {

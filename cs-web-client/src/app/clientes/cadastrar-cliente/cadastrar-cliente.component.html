@@ -13,13 +13,13 @@
                 <field-select [label]="'Pessoa'" [itens]="itensPessoa" [controlName]="'tipoPessoa'"></field-select>
               </div>
               <div class="col-md-4">
-                <field-text label="Cpf/Cnpj" [controlName]="'cpfcnpj'" [mask]="mask.cpfcnpj" ></field-text>
+                <field-text label="Cpf/Cnpj" [controlName]="'cpfcnpj'" [mask]="mask.cpfcnpj"></field-text>
               </div>
             </div>
 
             <div class="row">
               <div class="col-md-5">
-                <field-text [label]="'Nome'" [controlName]="'nome'" [matcher]="matcher"></field-text>
+                <field-text [label]="'Nome'" [controlName]="'nome'" [matcher]="matcher" [autofoco]=true></field-text>
               </div>
               <div class="col-md-3">
                 <field-data [label]="'Data Nascimento'" [controlName]="'dataNasc'"></field-data>

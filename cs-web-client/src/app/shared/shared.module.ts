@@ -10,7 +10,8 @@ import { FieldSelectComponent } from './shared-components/field-select/field-sel
 import { FieldTextComponent } from './shared-components/field-text/field-text.component';
 import { FieldTextareaComponent } from './shared-components/field-textarea/field-textarea.component';
 
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { AutofocusDirective } from './directive/autofocus.directive'
 
 
 
@@ -21,7 +22,8 @@ import { NgxMaskModule, IConfig } from 'ngx-mask'
     FieldSelectComponent,
     CheckboxTableComponent,
     FieldDataComponent,
-    FieldTextareaComponent
+    FieldTextareaComponent,
+    AutofocusDirective
   ],
   exports:[
     FieldTextComponent,

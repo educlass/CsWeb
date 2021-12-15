@@ -47,7 +47,7 @@ export class CadastrarClienteComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-
+    console.log(this.form.get('nome'));
   }
 
   private inicializarForm() {
