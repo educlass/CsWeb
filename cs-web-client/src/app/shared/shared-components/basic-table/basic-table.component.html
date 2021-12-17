@@ -1,30 +1,33 @@
-  <mat-card-title>{{tituloTabela}}</mat-card-title>
-  <div class="mat-elevation-z3">
-    <mat-table [dataSource]="dataSource">
+  <div class="row">
 
-      <ng-container *ngFor="let column of columns" [matColumnDef]=column.columnDef>
-        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column.header }}</mat-header-cell>
-        <mat-cell *matCellDef="let row">
+      <mat-card-title>{{tituloTabela}}</mat-card-title>
+      <div class="mat-elevation-z1">
+        <mat-table [dataSource]="dataSource">
 
-          {{ renderizaCelula(row, column.columnDef) }}
+          <ng-container *ngFor="let column of columns" [matColumnDef]=column.columnDef>
+            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column.header }}</mat-header-cell>
+            <mat-cell *matCellDef="let row">
 
-          <div *ngIf="column.columnDef === 'acao'" class="button-container">
-            <button *ngIf="addBotaoEditar" mat-mini-fab color="accent">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button *ngIf="addBotaoExcluir" mat-mini-fab color="warn">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </div>
+              {{ renderizaCelula(row, column.columnDef) }}
 
-        </mat-cell>
-      </ng-container>
+              <div *ngIf="column.columnDef === 'acao'" class="button-container">
+                <button *ngIf="addBotaoEditar" mat-mini-fab color="accent">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button *ngIf="addBotaoExcluir" mat-mini-fab color="warn">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="selecionarLinhaTabela(row)"></mat-row>
+            </mat-cell>
+          </ng-container>
 
-    </mat-table>
-    <mat-paginator *ngIf="addPaginacao" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
-      aria-label="Itens por Pagina">
-    </mat-paginator>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="selecionarLinhaTabela(row)"></mat-row>
+
+        </mat-table>
+        <mat-paginator *ngIf="addPaginacao" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+          aria-label="Itens por Pagina">
+        </mat-paginator>
+      </div>
   </div>
