@@ -20,6 +20,8 @@ export class ClientesComponent implements OnInit {
   form!: FormGroup;
   control!: FormControl;
 
+  clienteSelecionado!:Clientes;
+
   @ViewChild(MatPaginator, {static: false}) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
 
@@ -27,7 +29,7 @@ export class ClientesComponent implements OnInit {
               private clientesServices: ClientesService,
               private router: Router) {
 
-    this.inicializarForm();
+    this.inicializarFormFiltro();
     this.clientesServices.listarClientes().subscribe(clientes =>{
       this.dataSource = clientes;
     });
@@ -40,7 +42,7 @@ export class ClientesComponent implements OnInit {
   ngAfterViewInit() {
   }
 
-  private inicializarForm() {
+  private inicializarFormFiltro() {
     this.form = this.formBuilder.group({
       nome: [null],
       cpfcnpj: [null],
@@ -64,7 +66,9 @@ export class ClientesComponent implements OnInit {
   }
 
   exibirDetalheCliente(cliente:Clientes){
-    console.log(cliente);
+    this.clienteSelecionado = cliente;
+    this.exibirCadastro = !this.exibirCadastro;
+    console.log( this.clienteSelecionado);
   }
 
 }

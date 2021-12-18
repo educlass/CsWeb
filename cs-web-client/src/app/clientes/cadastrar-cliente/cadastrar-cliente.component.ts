@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Clientes } from './../../shared/model/clientes';
+import { Component, ElementRef, OnInit, ViewChild, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Mask } from 'src/app/shared/enums/mask';
 
@@ -10,6 +11,8 @@ import { CsErrorStateMatcher } from './../../shared/shared-components/error-stat
   styleUrls: ['./cadastrar-cliente.component.scss']
 })
 export class CadastrarClienteComponent implements OnInit {
+
+  @Input() clienteSelecionado!: Clientes;
 
   form!: FormGroup;
   control!: FormControl;
@@ -43,11 +46,24 @@ export class CadastrarClienteComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-
+    if(this.clienteSelecionado !== undefined || this.clienteSelecionado !== null){
+      console.log(this.clienteSelecionado);
+      this.form.setValue(this.clienteSelecionado);
+      this.form.disable();
+    }else{
+      console.log('nulo');
+      console.log(this.clienteSelecionado);
+    }
   }
 
-  ngAfterViewInit() {
-    console.log(this.form.get('nome'));
+  ngAfterViewInit(): void {
+    if(this.clienteSelecionado !== undefined || this.clienteSelecionado !== null){
+      console.log(this.clienteSelecionado);
+      this.form.setValue(this.clienteSelecionado);
+    }else{
+      console.log('nulo');
+      console.log(this.clienteSelecionado);
+    }
   }
 
   private inicializarForm() {
