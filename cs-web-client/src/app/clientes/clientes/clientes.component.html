@@ -42,6 +42,14 @@
 
   </form>
 
-  <cadastrar-cliente *ngIf="exibirCadastro"></cadastrar-cliente>
+  <div *ngIf="exibirCadastro">
+    <barra-divisao></barra-divisao>
+    <div class="col-md-12 text-end">
+      <button type="button" mat-raised-button color="primary" (click)="novoCliente()">
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </div>
+    <cadastrar-cliente></cadastrar-cliente>
+  </div>
 
 </container>

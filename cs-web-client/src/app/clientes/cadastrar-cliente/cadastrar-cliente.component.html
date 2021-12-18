@@ -1,6 +1,8 @@
-<div class="row" style="margin-top: 60px;">
+<barra-divisao></barra-divisao>
+<div class="row">
   <mat-card-title>Cadastrar Clientes</mat-card-title>
   <form [formGroup]="form" (ngSubmit)="salvarCliente()">
+
       <mat-tab-group dynamicHeight>
         <mat-tab label="Informações Básicas">
           <div class="">
@@ -103,7 +105,7 @@
           </div>
         </mat-tab>
         <mat-tab label="Informações Adicionais">
-          <div class="container">
+          <div class="">
             <barra-divisao></barra-divisao>
             <mat-card-subtitle><strong>Endereço Comercial</strong></mat-card-subtitle>
 
@@ -162,15 +164,11 @@
         </mat-tab>
 
       </mat-tab-group>
-      <div class="container row">
-        <div class="col-md-11 text-end">
+
+      <div class="row">
+        <div class="col-md-12 text-end">
           <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid">
             <mat-icon>save</mat-icon>
-          </button>
-        </div>
-        <div class="col-md-1">
-          <button type="button" mat-raised-button color="primary" routerLink="/clientes">
-            <mat-icon>cancel</mat-icon>
           </button>
         </div>
       </div>
