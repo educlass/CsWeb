@@ -42,14 +42,11 @@
 
   </form>
 
-  <div *ngIf="exibirCadastro">
+  <!-- <div *ngIf="exibirCadastro">
     <barra-divisao></barra-divisao>
-    <div class="col-md-12 text-end">
-      <button type="button" mat-raised-button color="primary" (click)="novoCliente()">
-        <mat-icon>cancel</mat-icon>
-      </button>
-    </div>
-    <cadastrar-cliente [clienteSelecionado]="clienteSelecionado"></cadastrar-cliente>
-  </div>
+    <cadastrar-cliente (fechar)="fechar($event)"></cadastrar-cliente>
+  </div> -->
+
+  <detalhar-cliente *ngIf="exibirDetalhe" (fechar)="fechar($event)" [clienteSelecionado]="clienteSelecionado"></detalhar-cliente>
 
 </container>

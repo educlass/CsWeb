@@ -22,12 +22,16 @@ export class ClientesComponent implements OnInit {
 
   clienteSelecionado!:Clientes;
 
+  exibirCadastro: boolean =  false;
+  exibirDetalhe: boolean =  false;
+
   @ViewChild(MatPaginator, {static: false}) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
 
   constructor(private formBuilder: FormBuilder,
               private clientesServices: ClientesService,
-              private router: Router) {
+              private router: Router,
+              private chRef: ChangeDetectorRef) {
 
     this.inicializarFormFiltro();
     this.clientesServices.listarClientes().subscribe(clientes =>{
@@ -56,7 +60,7 @@ export class ClientesComponent implements OnInit {
   pesquisar(){
     console.log(this.dataSource);
   }
-  exibirCadastro: boolean =  false;
+
 
   public novoCliente(){
     console.log('entrou');
@@ -65,9 +69,17 @@ export class ClientesComponent implements OnInit {
     return this.exibirCadastro;
   }
 
+  fechar(acao:boolean){
+    this.exibirDetalhe = acao;
+  }
+
+
   exibirDetalheCliente(cliente:Clientes){
     this.clienteSelecionado = cliente;
-    this.exibirCadastro = !this.exibirCadastro;
+    this.exibirDetalhe = this.exibirDetalhe?this.exibirDetalhe:!this.exibirDetalhe;
+    this.chRef.detectChanges();
+    this.exibirDetalhe = this.exibirDetalhe?this.exibirDetalhe:!this.exibirDetalhe;
+    this.chRef.detectChanges();
     console.log( this.clienteSelecionado);
   }
 

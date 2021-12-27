@@ -1,12 +1,12 @@
 <barra-divisao></barra-divisao>
 <div class="row">
-  <mat-card-title>Cadastrar Clientes</mat-card-title>
+  <mat-card-title>Detalhar Clientes</mat-card-title>
   <div class="col-md-12 text-end">
     <button type="button" mat-raised-button color="primary" (click)="fecharJanela()">
       <mat-icon>cancel</mat-icon>
     </button>
   </div>
-  <form [formGroup]="form" (ngSubmit)="salvarCliente()">
+  <form [formGroup]="form">
 
       <mat-tab-group dynamicHeight>
 
@@ -28,7 +28,7 @@
 
             <div class="row">
               <div class="col-md-5">
-                <field-text [label]="'Nome'" [controlName]="'nome'" [matcher]="matcher" [autofoco]=true></field-text>
+                <field-text [label]="'Nome'" [controlName]="'nome'" [matcher]="matcher"></field-text>
               </div>
               <div class="col-md-3">
                 <field-data [label]="'Data Nascimento'" [controlName]="'dataNasc'"></field-data>
@@ -170,14 +170,6 @@
         </mat-tab>
 
       </mat-tab-group>
-
-      <div class="row">
-        <div class="col-md-12 text-end">
-          <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid">
-            <mat-icon>save</mat-icon>
-          </button>
-        </div>
-      </div>
 
   </form>
 </div>

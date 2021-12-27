@@ -8,13 +8,15 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CadastrarClienteComponent } from './cadastrar-cliente/cadastrar-cliente.component';
+import { DetalharClienteComponent } from './detalhar-cliente/detalhar-cliente.component';
 
 
 
 @NgModule({
   declarations: [
     ClientesComponent,
-    CadastrarClienteComponent
+    CadastrarClienteComponent,
+    DetalharClienteComponent
   ],
   imports: [
     CommonModule,

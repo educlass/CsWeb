@@ -1,5 +1,5 @@
 <mat-form-field appearance="outline" [formGroup]="form">
   <mat-label>{{label}}</mat-label>
   <input *ngIf="!autofoco" matInput [formControl]="control" [mask]="mask" placeholder={{label}} [errorStateMatcher]="matcher">
-  <input *ngIf="autofoco" matInput [formControl]="control" [mask]="mask" placeholder={{label}} [errorStateMatcher]="matcher" appAutofocus>
+  <input *ngIf="autofoco" matInput [formControl]="control" [mask]="mask" placeholder={{label}} [errorStateMatcher]="matcher" autofocus>
 </mat-form-field>

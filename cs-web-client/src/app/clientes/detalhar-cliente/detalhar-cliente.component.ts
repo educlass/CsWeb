@@ -6,12 +6,13 @@ import { Mask } from 'src/app/shared/enums/mask';
 import { CsErrorStateMatcher } from './../../shared/shared-components/error-state-matcher';
 
 @Component({
-  selector: 'cadastrar-cliente',
-  templateUrl: './cadastrar-cliente.component.html',
-  styleUrls: ['./cadastrar-cliente.component.scss']
+  selector: 'detalhar-cliente',
+  templateUrl: './detalhar-cliente.component.html',
+  styleUrls: ['./detalhar-cliente.component.scss']
 })
-export class CadastrarClienteComponent implements OnInit {
+export class DetalharClienteComponent implements OnInit {
 
+  @Input() clienteSelecionado!: Clientes;
   @Output() fechar = new EventEmitter<boolean>();
 
   form!: FormGroup;
@@ -22,7 +23,6 @@ export class CadastrarClienteComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private chRef: ChangeDetectorRef) {
     this.inicializarForm();
-
    }
 
   itensPessoa:any[]= [
@@ -47,26 +47,20 @@ export class CadastrarClienteComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+  }
+  ngAfterViewInit(): void {
+  }
 
-
+  ngOnChanges() {
+    this.form.reset();
+    this.form.disable();
+    if (this.clienteSelecionado !== undefined || this.clienteSelecionado !== null) {
+      this.form.setValue(this.clienteSelecionado);
+    }
   }
 
   fecharJanela(){
     this.fechar.emit(false);
-  }
-
-  ngAfterViewInit(): void {
-    // this.form.reset();
-
-    // if(this.clienteSelecionado !== undefined || this.clienteSelecionado !== null){
-    //   console.log(this.clienteSelecionado);
-    //   this.form.setValue(this.clienteSelecionado);
-    //   this.form.disable();
-    // }else{
-    //   console.log('nulo');
-    //   console.log(this.clienteSelecionado);
-    // }
-    // this.chRef.detectChanges();
   }
 
   private inicializarForm() {
@@ -117,20 +111,6 @@ export class CadastrarClienteComponent implements OnInit {
       observacao: [null]
 
     });
-
-  }
-
-  salvarCliente(){
-
-    if(this.form.valid){
-      console.log('VALIDO');
-      this.form.disable();
-    }else{
-      console.log('invalido');
-      console.log(this.form.hasError('required'));
-      console.log(this.form.value);
-
-    }
 
   }
 
