@@ -23,7 +23,7 @@ export class ClientesComponent implements OnInit {
   clienteSelecionado!:Clientes;
 
   exibirCadastro: boolean =  false;
-  exibirDetalhe: boolean =  false;
+  editar: boolean =  false;
 
   @ViewChild(MatPaginator, {static: false}) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
@@ -70,15 +70,15 @@ export class ClientesComponent implements OnInit {
   }
 
   fechar(acao:boolean){
-    this.exibirDetalhe = acao;
+    this.exibirCadastro = acao;
+    this.editar = acao;
   }
 
 
-  exibirDetalheCliente(cliente:Clientes){
+  editarCliente(cliente:Clientes){
     this.clienteSelecionado = cliente;
-    this.exibirDetalhe = this.exibirDetalhe?this.exibirDetalhe:!this.exibirDetalhe;
-    this.chRef.detectChanges();
-    this.exibirDetalhe = this.exibirDetalhe?this.exibirDetalhe:!this.exibirDetalhe;
+    this.editar = !this.editar;
+
     this.chRef.detectChanges();
     console.log( this.clienteSelecionado);
   }

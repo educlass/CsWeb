@@ -11,7 +11,7 @@
               {{ renderizaCelula(row, column.columnDef) }}
 
               <div *ngIf="column.columnDef === 'acao'" class="button-container">
-                <button *ngIf="addBotaoEditar" mat-mini-fab color="accent">
+                <button (click)="editarLinhaTabela(row)" *ngIf="addBotaoEditar" mat-mini-fab color="accent">
                   <mat-icon>edit</mat-icon>
                 </button>
                 <button *ngIf="addBotaoExcluir" mat-mini-fab color="warn">
@@ -23,7 +23,7 @@
           </ng-container>
 
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selecionarLinhaTabela(row)"></mat-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
         </mat-table>
         <mat-paginator *ngIf="addPaginacao" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons

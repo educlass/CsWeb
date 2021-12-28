@@ -1,8 +1,9 @@
-import { Clientes } from './../../shared/model/clientes';
-import { Component, ElementRef, OnInit, ViewChild, Input, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Mask } from 'src/app/shared/enums/mask';
 
+import { Clientes } from './../../shared/model/clientes';
 import { CsErrorStateMatcher } from './../../shared/shared-components/error-state-matcher';
 
 @Component({
@@ -12,6 +13,8 @@ import { CsErrorStateMatcher } from './../../shared/shared-components/error-stat
 })
 export class CadastrarClienteComponent implements OnInit {
 
+  @Input() clienteSelecionado!: Clientes;
+  @Input() editar: boolean = false;
   @Output() fechar = new EventEmitter<boolean>();
 
   form!: FormGroup;
@@ -23,7 +26,27 @@ export class CadastrarClienteComponent implements OnInit {
     private chRef: ChangeDetectorRef) {
     this.inicializarForm();
 
-   }
+  }
+
+  ngOnInit(): void {
+    if (this.editar) {
+      this.form.reset();
+      if (this.clienteSelecionado !== undefined || this.clienteSelecionado !== null) {
+        this.form.setValue(this.clienteSelecionado);
+      }
+    }
+  }
+
+  fecharJanela(){
+    this.fechar.emit(false);
+  }
+
+  ngAfterViewInit(): void {
+  }
+
+  ngOnChanges() {
+
+  }
 
   itensPessoa:any[]= [
     {value: 'F', viewValue: 'Física'},
@@ -46,29 +69,6 @@ export class CadastrarClienteComponent implements OnInit {
     {value: '4', viewValue: 'Viúvo'}
   ];
 
-  ngOnInit(): void {
-
-
-  }
-
-  fecharJanela(){
-    this.fechar.emit(false);
-  }
-
-  ngAfterViewInit(): void {
-    // this.form.reset();
-
-    // if(this.clienteSelecionado !== undefined || this.clienteSelecionado !== null){
-    //   console.log(this.clienteSelecionado);
-    //   this.form.setValue(this.clienteSelecionado);
-    //   this.form.disable();
-    // }else{
-    //   console.log('nulo');
-    //   console.log(this.clienteSelecionado);
-    // }
-    // this.chRef.detectChanges();
-  }
-
   private inicializarForm() {
     this.form = this.formBuilder.group({
       id: [null],
@@ -76,7 +76,7 @@ export class CadastrarClienteComponent implements OnInit {
       cpfcnpj: [],
 
       nome: [null,[Validators.required]],
-      dataNasc: [null],
+      dataNasc: [""],
       sexo: [""],
       estadoCivil: [""],
 
@@ -123,7 +123,7 @@ export class CadastrarClienteComponent implements OnInit {
   salvarCliente(){
 
     if(this.form.valid){
-      console.log('VALIDO');
+      console.log( this.form);
       this.form.disable();
     }else{
       console.log('invalido');

@@ -67,7 +67,7 @@ export class BasicTableComponent implements OnInit {
     return (elemento && key)? elemento[key]:'';
   }
 
-  public selecionarLinhaTabela(linha:any){
+  public editarLinhaTabela(linha:any){
     this.linhaSelecionada.emit(linha);
   }
 
